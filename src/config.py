@@ -59,6 +59,36 @@ def get_firefox_profile_path() -> str:
     with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
         return json.load(file)["firefox_profile"]
 
+def get_llm_provider() -> str:
+    """
+    Gets the LLM provider from the config file.
+
+    Returns:
+        provider (str): The LLM provider (e.g., local_ollama, openrouter)
+    """
+    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
+        return json.load(file).get("llm_provider", "local_ollama")
+
+def get_openrouter_api_key() -> str:
+    """
+    Gets the OpenRouter API key.
+
+    Returns:
+        key (str): The OpenRouter API key
+    """
+    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
+        return json.load(file).get("openrouter_api_key", "")
+
+def get_openrouter_model() -> str:
+    """
+    Gets the OpenRouter model name from the config file.
+
+    Returns:
+        model (str): The OpenRouter model name, or empty string if not set.
+    """
+    with open(os.path.join(ROOT_DIR, "config.json"), "r") as file:
+        return json.load(file).get("openrouter_model", "")
+
 def get_headless() -> bool:
     """
     Gets the headless flag from the config file.
